@@ -1,367 +1,201 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Феномен верности</title>
-    <meta name="description" content="Исследование ценностного выбора защитников Донбасса - Моторола, Гиви, Захарченко">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-    <header id="mainHeader">
-        <div class="container">
-            <div class="header-top">
-                <h1>Феномен верности</h1>
-                <button class="theme-switcher-header" onclick="toggleTheme()" aria-label="Переключить тему">
-                    <span class="theme-icon">🌙</span>
-                </button>
-            </div>
-            <p>Ценностный выбор защитников Донбасса (2014-2022)</p>
-            
-            <!-- Поиск по сайту -->
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Поиск по сайту...">
-                <div id="searchResults" class="search-results"></div>
-            </div>
+/* Стили для глав книги */
+.chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
 
-            <nav>
-                <a href="#about">О проекте</a>
-                <a href="#heroes">Герои</a>
-                <a href="#quotes">Цитаты</a>
-                <a href="#book">Книга</a>
-                <a href="#contact">Контакты</a>
-            </nav>
-        </div>
-    </header>
+.chapter-card {
+    background: var(--light);
+    border: 2px solid var(--light-darker);
+    border-radius: 12px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
 
-    <main class="container">
-        <!-- О проекте -->
-        <section id="about">
-            <h2>О проекте</h2>
-            <p>Это исследование — попытка понять, что двигало обычными людьми, которые в 2014 году взяли в руки оружие, чтобы защитить свой дом. Мы анализируем не политику, а внутренние ценности: верность, долг, справедливость.</p>
-            <p>Через биографии Моторолы, Гиви и Захарченко мы раскрываем систему нравственных координат, которая оказалась сильнее оружия. Их выбор — это урок для каждого из нас.</p>
-        </section>
+.chapter-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px var(--shadow);
+    border-color: var(--primary);
+}
 
-        <!-- Герои -->
-        <section id="heroes">
-            <h2>Герои исследования</h2>
-            <div class="heroes-grid">
-                <div class="hero-card">
-                    <h3>Арсен Павлов<br>"Моторола"</h3>
-                    <p>Командир, который шёл первым. Его принцип: «Решил — делай». Погиб 16.10.2016.</p>
-                    <div class="hero-details">
-                        <span class="hero-date">1983-2016</span>
-                    </div>
-                </div>
-                <div class="hero-card">
-                    <h3>Михаил Толстых<br>"Гиви"</h3>
-                    <p>Водитель, ставший символом народного сопротивления. Погиб 08.02.2017.</p>
-                    <div class="hero-details">
-                        <span class="hero-date">1980-2017</span>
-                    </div>
-                </div>
-                <div class="hero-card">
-                    <h3>Александр<br>Захарченко</h3>
-                    <p>Первый глава ДНР. Принял на себя ответственность за тысячи людей. Погиб 31.08.2018.</p>
-                    <div class="hero-details">
-                        <span class="hero-date">1976-2018</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+.chapter-number {
+    background: var(--primary);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
 
-        <!-- Цитаты -->
-        <section id="quotes">
-            <h2>Ключевые цитаты</h2>
-            <div class="quotes-grid">
-                                <div class="quote-card">
-                    <div class="quote-icon">❝</div>
-                    <p>"На войне нет времени на сомнения. Решил — делай."</p>
-                    <cite>— Арсен Павлов («Моторола»)</cite>
-                </div>
-                <div class="quote-card">
-                    <div class="quote-icon">❝</div>
-                    <p>"Мы сделали свой выбор. И назад дороги нет."</p>
-                    <cite>— Александр Захарченко</cite>
-                </div>
-                <div class="quote-card">
-                    <div class="quote-icon">❝</div>
-                    <p>"Мы не наёмники. Мы защищаем свои дома. У нас нет другого выбора."</p>
-                    <cite>— Михаил Толстых («Гиви»)</cite>
-                </div>
-            </div>
-        </section>
+.chapter-content h3 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    line-height: 1.3;
+}
 
-        <!-- Книга -->
-        <section id="book">
-            <h2>Книга</h2>
-            <p>Личная версия исследования с анализом ценностного кода героев и историческими параллелями. Изучите глубинные мотивы поступков защитников Донбасса.</p>
-            
-            <div class="book-features">
-                <div class="feature">
-                    <strong>10 глав</strong>
-                    <span>Личное исследование</span>
-                </div>
-                <div class="feature">
-                    <strong>Анализ ценностей</strong>
-                    <span>Верность, долг, честь</span>
-                </div>
-                <div class="feature">
-                    <strong>Исторические параллели</strong>
-                    <span>Связь поколений</span>
-                </div>
-            </div>
+.chapter-content p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
+}
 
-            <div class="book-actions">
-                <a href="#" class="button primary">Читать онлайн</a>
-                <a href="#" class="button secondary">Скачать PDF</a>
-            </div>
-        </section>
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+}
 
-        <!-- Контакты -->
-        <section id="contact">
-            <h2>Контакты</h2>
-            <p>По вопросам сотрудничества и обратной связи:</p>
-            <div class="contact-info">
-                <p>📧 Email: nikitamelnichenko389@gmail.com</p>
-                <p>🌐 Сайт: nikitamelnichenko.github.io</p>
-            </div>
-        </section>
-    </main>
+.modal-content {
+    background-color: var(--light);
+    margin: 2% auto;
+    padding: 0;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
 
-    <footer>
-        <div class="container">
-            <p>Проект «Феномен верности» © 2024</p>
-            <p>Исследование ценностного выбора защитников Донбасса</p>
-        </div>
-    </footer>
+.close {
+    color: var(--text-light);
+    float: right;
+    font-size: 2rem;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    z-index: 2001;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
 
-    <script>
-        // Плавная прокрутка для навигации
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+.close:hover {
+    color: var(--primary);
+}
 
-        // Анимация появления элементов при скролле
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+#modalBody {
+    padding: 3rem 2.5rem 2rem;
+}
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+#modalBody h2 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--light-darker);
+    padding-bottom: 0.5rem;
+}
 
-        // Наблюдаем за карточками
-        document.querySelectorAll('.hero-card, .quote-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
+.chapter-text {
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
 
-        // ТЁМНАЯ ТЕМА - КРАСИВАЯ ВЕРСИЯ
-        function toggleTheme() {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            // Применяем новую тему
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            
-            // Обновляем иконку
-            updateThemeIcon(newTheme);
-        }
+.chapter-text p {
+    margin-bottom: 1.2rem;
+    text-align: justify;
+}
 
-        function updateThemeIcon(theme) {
-            const themeIcon = document.querySelector('.theme-icon');
-            if (themeIcon) {
-                themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-            }
-        }
+.chapter-text h3 {
+    color: var(--primary);
+    margin: 2rem 0 1rem 0;
+    font-size: 1.3rem;
+    border-left: 4px solid var(--primary);
+    padding-left: 1rem;
+}
 
-        // Загружаем сохранённую тему
-        function loadTheme() {
-            const savedTheme = localStorage.getItem('theme') || 
-                              (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-            
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            updateThemeIcon(savedTheme);
-        }
+.chapter-text strong {
+    color: var(--primary-dark);
+    font-weight: 600;
+}
 
-        // ЗАГОЛОВОК, КОТОРЫЙ ПРЯЧЕТСЯ ПРИ СКРОЛЛЕ
-        let lastScrollY = window.scrollY;
-        const header = document.getElementById('mainHeader');
+/* Адаптивность для модального окна */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+    
+    #modalBody {
+        padding: 2.5rem 1.5rem 1.5rem;
+    }
+    
+    .chapters-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chapter-card {
+        padding: 1.2rem;
+    }
+    
+    .chapter-number {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    #modalBody h2 {
+        font-size: 1.5rem;
+    }
+    
+    .chapter-text {
+        font-size: 1rem;
+    }
+}
 
-        function handleScroll() {
-            const currentScrollY = window.scrollY;
-            
-            if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                // Прокрутка вниз - прячем заголовок
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                // Прокрутка вверх - показываем заголовок
-                header.style.transform = 'translateY(0)';
-            }
-            
-            lastScrollY = currentScrollY;
-        }
+/* Тёмная тема для модального окна и глав */
+[data-theme="dark"] .chapter-card {
+    background: var(--dark-lighter);
+    border-color: var(--dark-lighter);
+}
 
-        // Запускаем при загрузке страницы
-        document.addEventListener('DOMContentLoaded', function() {
-            loadTheme();
-            window.addEventListener('scroll', handleScroll);
-        });
+[data-theme="dark"] .chapter-card:hover {
+    border-color: var(--primary);
+}
 
-        // Поиск по сайту
-        const searchContent = [
-            {
-                title: "Моторола: долг солдата",
-                content: "Арсен Павлов, известный как Моторола, был командиром который шёл первым. Его принцип: «Решил — делай».",
-                url: "#heroes",
-                category: "Герои"
-            },
-            {
-                title: "Гиви: ярость народа", 
-                content: "Михаил Толстых, известный как Гиви, стал олицетворением народного гнева. Шахтёр, ставший символом сопротивления.",
-                url: "#heroes",
-                category: "Герои"
-            },
-            {
-                title: "Ценностный код",
-                content: "Система ценностей которая объединяла героев Донбасса: верность, долг, справедливость.",
-                url: "#about", 
-                category: "Исследование"
-            },
-            {
-                title: "Александр Захарченко",
-                content: "Первый глава ДНР. Принял на себя ответственность за тысячи людей в условиях войны.",
-                url: "#heroes",
-                category: "Герои"
-            }
-        ];
+[data-theme="dark"] .chapter-content h3 {
+    color: var(--primary-light);
+}
 
-        function performSearch(query) {
-            if (!query.trim()) {
-                hideResults();
-                return;
-            }
-            
-            const results = searchContent.filter(item => 
-                item.title.toLowerCase().includes(query.toLowerCase()) ||
-                item.content.toLowerCase().includes(query.toLowerCase())
-            );
-            
-            displayResults(results, query);
-        }
+[data-theme="dark"] .modal-content {
+    background-color: var(--dark-light);
+}
 
-        function displayResults(results, query) {
-            const resultsContainer = document.getElementById('searchResults');
-            
-            if (results.length === 0) {
-                resultsContainer.innerHTML = '<div class="search-result-item">Ничего не найдено</div>';
-                resultsContainer.style.display = 'block';
-                return;
-            }
-            
-            resultsContainer.innerHTML = results.map(item => `
-                <div class="search-result-item" onclick="navigateToSearchResult('${item.url}')">
-                    <div style="font-weight: bold; margin-bottom: 0.5rem;">
-                        ${highlightText(item.title, query)}
-                    </div>
-                    <div style="font-size: 0.9rem; color: #666;">
-                        ${highlightText(item.content.substring(0, 100), query)}...
-                    </div>
-                    <div style="font-size: 0.8rem; color: var(--primary); margin-top: 0.5rem;">
-                        ${item.category}
-                    </div>
-                </div>
-            `).join('');
-            
-            resultsContainer.style.display = 'block';
-        }
+[data-theme="dark"] .close {
+    color: var(--text-light);
+}
 
-        function highlightText(text, query) {
-            const regex = new RegExp(`(${query})`, 'gi');
-            return text.replace(regex, '<span class="search-highlight">$1</span>');
-        }
+[data-theme="dark"] .close:hover {
+    color: var(--primary);
+}
 
-        function hideResults() {
-            document.getElementById('searchResults').style.display = 'none';
-        }
+[data-theme="dark"] #modalBody h2 {
+    color: var(--primary-light);
+    border-bottom-color: var(--dark-lighter);
+}
 
-        function navigateToSearchResult(url) {
-            hideResults();
-            document.getElementById('searchInput').value = '';
-            
-            // Плавная прокрутка к элементу
-            const targetElement = document.querySelector(url);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-                
-                // Подсветка элемента
-                targetElement.style.animation = 'highlight 2s ease';
-                setTimeout(() => {
-                    targetElement.style.animation = '';
-                }, 2000);
-            }
-        }
-
-        // Обработчики событий для поиска
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('searchInput');
-            const searchResults = document.getElementById('searchResults');
-            
-            if (searchInput) {
-                searchInput.addEventListener('input', function() {
-                    performSearch(this.value);
-                });
-                
-                // Закрытие результатов при клике вне поиска
-                document.addEventListener('click', function(e) {
-                    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-                        hideResults();
-                    }
-                });
-                
-                // Обработка клавиш
-                searchInput.addEventListener('keydown', function(e) {
-                    if (e.key === 'Escape') {
-                        hideResults();
-                    }
-                });
-            }
-        });
-
-        // Анимация подсветки
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes highlight {
-                0% { background-color: rgba(139, 0, 0, 0.3); }
-                100% { background-color: transparent; }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
-</body>
-</html>
+[data-theme="dark"] .chapter-text h3 {
+    color: var(--primary-light);
+    border-left-color: var(--primary);
+}
