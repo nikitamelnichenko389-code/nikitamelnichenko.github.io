@@ -19,6 +19,12 @@ body {
     background: var(--light);
 }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 /* Шапка */
 header {
     background: linear-gradient(135deg, var(--dark) 0%, #2d2d2d 100%);
@@ -63,10 +69,8 @@ nav a:hover {
 }
 
 /* Основной контент */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
+main {
+    padding: 3rem 0;
 }
 
 section {
@@ -108,36 +112,9 @@ h2 {
 .hero-card h3 {
     color: var(--primary);
     margin-bottom: 0.5rem;
+    font-size: 1.3rem;
 }
 
-/* Футер */
-footer {
-    background: var(--dark);
-    color: white;
-    text-align: center;
-    padding: 2rem 0;
-    margin-top: 3rem;
-}
-
-/* Адаптивность */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
-    }
-    
-    nav {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .container {
-        padding: 1rem;
-    }
-    
-    section {
-        padding: 1.5rem;
-    }
-}
 /* Сетка цитат */
 .quotes-grid {
     display: grid;
@@ -205,8 +182,34 @@ footer {
     color: white;
 }
 
-/* Адаптивность для мобильных */
+/* Футер */
+footer {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+/* Адаптивность */
 @media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    section {
+        padding: 1.5rem;
+    }
+    
     .heroes-grid,
     .quotes-grid {
         grid-template-columns: 1fr;
