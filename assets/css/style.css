@@ -138,3 +138,85 @@ footer {
         padding: 1.5rem;
     }
 }
+/* Сетка цитат */
+.quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.quote-card {
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #8B0000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.quote-card p {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.quote-card cite {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Кнопки */
+.book-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.button.primary {
+    background: #8B0000;
+    color: white;
+}
+
+.button.primary:hover {
+    background: #a00;
+    transform: translateY(-2px);
+}
+
+.button.secondary {
+    background: transparent;
+    color: #8B0000;
+    border-color: #8B0000;
+}
+
+.button.secondary:hover {
+    background: #8B0000;
+    color: white;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .heroes-grid,
+    .quotes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .book-actions {
+        flex-direction: column;
+    }
+    
+    .button {
+        text-align: center;
+    }
+}
