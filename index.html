@@ -4,52 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Феномен верности</title>
-        <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        header {
-            background: #f5f5f5;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-        <h1>Феномен верности</h1>
-        <p>Ценностный выбор защитников Донбасса</p>
-        <nav>
-            <a href="#about">О проекте</a>
-            <a href="#heroes">Герои</a>
-            <a href="#book">Книга</a>
-        </nav>
+        <div class="container">
+            <h1>Феномен верности</h1>
+            <p>Ценностный выбор защитников Донбасса (2014-2022)</p>
+            <nav>
+                <a href="#about">О проекте</a>
+                <a href="#heroes">Герои</a>
+                <a href="#quotes">Цитаты</a>
+                <a href="#book">Книга</a>
+            </nav>
+        </div>
     </header>
 
-    <section id="about">
-        <h2>О проекте</h2>
-        <p>Исследование феномена верности на примере защитников Донбасса...</p>
-    </section>
+    <main class="container">
+        <!-- О проекте -->
+        <section id="about">
+            <h2>О проекте</h2>
+            <p>Это исследование — попытка понять, что двигало обычными людьми, которые в 2014 году взяли в руки оружие, чтобы защитить свой дом. Мы анализируем не политику, а внутренние ценности: верность, долг, справедливость.</p>
+            <p>Через биографии Моторолы, Гиви и Захарченко мы раскрываем систему нравственных координат, которая оказалась сильнее оружия. Их выбор — это урок для каждого из нас.</p>
+        </section>
 
-    <section id="heroes">
-        <h2>Герои</h2>
-        <p>Моторола • Гиви • Захарченко</p>
-    </section>
+        <!-- Герои -->
+        <section id="heroes">
+            <h2>Герои исследования</h2>
+            <div class="heroes-grid">
+                <div class="hero-card">
+                    <h3>Арсен Павлов<br>"Моторола"</h3>
+                    <p>Командир, который шёл первым. Его принцип: «Решил — делай». Погиб 16.10.2016.</p>
+                </div>
+                <div class="hero-card">
+                    <h3>Михаил Толстых<br>"Гиви"</h3>
+                    <p>Шахтёр, ставший символом народного сопротивления. Погиб 08.02.2017.</p>
+                </div>
+                <div class="hero-card">
+                    <h3>Александр<br>Захарченко</h3>
+                    <p>Первый глава ДНР. Принял на себя ответственность за тысячи людей. Погиб 31.08.2018.</p>
+                </div>
+            </div>
+        </section>
 
-    <section id="book">
-        <h2>Книга</h2>
-        <p>Полная версия исследования в формате книги.</p>
-    </section>
+        <!-- Цитаты -->
+        <section id="quotes">
+            <h2>Ключевые цитаты</h2>
+            <div class="quotes-grid">
+                <div class="quote-card">
+                    <p>"Мы не наёмники. Мы защищаем свои дома. У нас нет другого выбора."</p>
+                    <cite>— Михаил Толстых («Гиви»)</cite>
+                </div>
+                <div class="quote-card">
+                    <p>"На войне нет времени на сомнения. Решил — делай."</p>
+                    <cite>— Арсен Павлов («Моторола»)</cite>
+                </div>
+                <div class="quote-card">
+                    <p>"Мы сделали свой выбор. И назад дороги нет."</p>
+                    <cite>— Александр Захарченко</cite>
+                </div>
+            </div>
+        </section>
+
+        <!-- Книга -->
+        <section id="book">
+            <h2>Книга</h2>
+            <p>Полная версия исследования с анализом ценностного кода героев и историческими параллелями.</p>
+            <div class="book-actions">
+                <a href="#" class="button primary">Читать онлайн</a>
+                <a href="#" class="button secondary">Скачать PDF</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Проект «Феномен верности» © 2024</p>
+        </div>
+    </footer>
 </body>
 </html>
