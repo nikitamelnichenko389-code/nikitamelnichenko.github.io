@@ -12,6 +12,13 @@
         <div class="container">
             <h1>Феномен верности</h1>
             <p>Ценностный выбор защитников Донбасса (2014-2022)</p>
+            
+            <!-- Поиск по сайту -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Поиск по сайту...">
+                <div id="searchResults" class="search-results"></div>
+            </div>
+
             <nav>
                 <a href="#about">О проекте</a>
                 <a href="#heroes">Герои</a>
@@ -124,6 +131,11 @@
         </div>
     </footer>
 
+    <!-- Переключатель темы -->
+    <button class="theme-switcher" onclick="toggleTheme()" aria-label="Переключить тему">
+        🌙
+    </button>
+
     <script>
         // Плавная прокрутка для навигации
         document.querySelectorAll('nav a').forEach(anchor => {
@@ -163,6 +175,163 @@
             card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(card);
         });
+
+        // Тёмная тема
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Обновляем иконку
+            const themeBtn = document.querySelector('.theme-switcher');
+            themeBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Загружаем сохранённую тему
+        const savedTheme = localStorage.getItem('theme') || 
+                          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        // Устанавливаем правильную иконку
+        const themeBtn = document.querySelector('.theme-switcher');
+        if (themeBtn) {
+            themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Поиск по сайту
+        const searchContent = [
+            {
+                title: "Моторола: долг солдата",
+                content: "Арсен Павлов, известный как Моторола, был командиром который шёл первым. Его принцип: «Решил — делай».",
+                url: "#heroes",
+                category: "Герои"
+            },
+            {
+                title: "Гиви: ярость народа", 
+                content: "Михаил Толстых, известный как Гиви, стал олицетворением народного гнева. Шахтёр, ставший символом сопротивления.",
+                url: "#heroes",
+                category: "Герои"
+            },
+            {
+                title: "Ценностный код",
+                content: "Система ценностей которая объединяла героев Донбасса: верность, долг, справедливость.",
+                url: "#about", 
+                category: "Исследование"
+            },
+            {
+                title: "Александр Захарченко",
+                content: "Первый глава ДНР. Принял на себя ответственность за тысячи людей в условиях войны.",
+                url: "#heroes",
+                category: "Герои"
+            }
+        ];
+
+        function performSearch(query) {
+            if (!query.trim()) {
+                hideResults();
+                return;
+            }
+            
+            const results = searchContent.filter(item => 
+                item.title.toLowerCase().includes(query.toLowerCase()) ||
+                item.content.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            displayResults(results, query);
+        }
+
+        function displayResults(results, query) {
+            const resultsContainer = document.getElementById('searchResults');
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<div class="search-result-item">Ничего не найдено</div>';
+                resultsContainer.style.display = 'block';
+                return;
+            }
+            
+            resultsContainer.innerHTML = results.map(item => `
+                <div class="search-result-item" onclick="navigateToSearchResult('${item.url}')">
+                    <div style="font-weight: bold; margin-bottom: 0.5rem;">
+                        ${highlightText(item.title, query)}
+                    </div>
+                    <div style="font-size: 0.9rem; color: #666;">
+                        ${highlightText(item.content.substring(0, 100), query)}...
+                    </div>
+                    <div style="font-size: 0.8rem; color: var(--primary); margin-top: 0.5rem;">
+                        ${item.category}
+                    </div>
+                </div>
+            `).join('');
+            
+            resultsContainer.style.display = 'block';
+        }
+
+        function highlightText(text, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return text.replace(regex, '<span class="search-highlight">$1</span>');
+        }
+
+        function hideResults() {
+            document.getElementById('searchResults').style.display = 'none';
+        }
+
+        function navigateToSearchResult(url) {
+            hideResults();
+            document.getElementById('searchInput').value = '';
+            
+            // Плавная прокрутка к элементу
+            const targetElement = document.querySelector(url);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Подсветка элемента
+                targetElement.style.animation = 'highlight 2s ease';
+                setTimeout(() => {
+                    targetElement.style.animation = '';
+                }, 2000);
+            }
+        }
+
+        // Обработчики событий для поиска
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    performSearch(this.value);
+                });
+                
+                // Закрытие результатов при клике вне поиска
+                document.addEventListener('click', function(e) {
+                    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                        hideResults();
+                    }
+                });
+                
+                // Обработка клавиш
+                searchInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        hideResults();
+                    }
+                });
+            }
+        });
+
+        // Анимация подсветки
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes highlight {
+                0% { background-color: rgba(139, 0, 0, 0.3); }
+                100% { background-color: transparent; }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
