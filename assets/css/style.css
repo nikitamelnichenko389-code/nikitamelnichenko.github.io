@@ -14,6 +14,7 @@
 
 html {
     font-size: 16px;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -24,6 +25,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -43,6 +45,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: all 0.3s ease;
 }
 
 header h1 {
@@ -85,6 +88,72 @@ nav a:hover {
     background: rgba(139, 0, 0, 0.1);
 }
 
+/* Поиск по сайту */
+.search-container {
+    position: relative;
+    max-width: 400px;
+    margin: 1rem auto;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+#searchInput:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+#searchInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.search-result-item {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.search-result-item:hover {
+    background: #f5f5f5;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-highlight {
+    background: yellow;
+    color: black;
+    padding: 0.1rem 0.2rem;
+    border-radius: 2px;
+}
+
 /* Основной контент */
 main {
     padding: 2rem 0;
@@ -98,6 +167,7 @@ section {
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     border-left: 4px solid var(--primary);
+    transition: all 0.3s ease;
 }
 
 h2 {
@@ -120,6 +190,7 @@ h2 {
     border-radius: 8px;
     border: 1px solid #ddd;
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .hero-card:hover {
@@ -137,6 +208,22 @@ h2 {
 .hero-card p {
     font-size: 0.95rem;
     color: #555;
+    margin-bottom: 1rem;
+}
+
+.hero-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.hero-date {
+    font-size: 0.85rem;
+    color: #888;
+    font-style: italic;
 }
 
 /* Сетка цитат */
@@ -153,6 +240,22 @@ h2 {
     border-radius: 10px;
     border-left: 4px solid #8B0000;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.quote-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.quote-icon {
+    font-size: 2rem;
+    color: var(--primary);
+    opacity: 0.3;
+    position: absolute;
+    top: 10px;
+    left: 15px;
 }
 
 .quote-card p {
@@ -161,12 +264,43 @@ h2 {
     margin-bottom: 1rem;
     color: #333;
     line-height: 1.5;
+    padding-left: 2rem;
 }
 
 .quote-card cite {
     color: #666;
     font-size: 0.85rem;
     font-style: normal;
+    display: block;
+    text-align: right;
+}
+
+/* Особенности книги */
+.book-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.feature {
+    text-align: center;
+    padding: 1rem;
+    background: var(--light);
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.feature strong {
+    display: block;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.feature span {
+    font-size: 0.9rem;
+    color: #666;
 }
 
 /* Кнопки */
@@ -189,6 +323,7 @@ h2 {
     text-align: center;
     flex: 1;
     min-width: 140px;
+    cursor: pointer;
 }
 
 .button.primary {
@@ -214,6 +349,16 @@ h2 {
     transform: translateY(-2px);
 }
 
+/* Контакты */
+.contact-info {
+    margin-top: 1rem;
+}
+
+.contact-info p {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0;
+}
+
 /* Футер */
 footer {
     background: var(--dark);
@@ -226,17 +371,110 @@ footer {
 footer p {
     opacity: 0.8;
     font-size: 0.9rem;
+    margin-bottom: 0.5rem;
 }
 
-/* Мобильная навигация */
-.mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
+/* Переключатель темы */
+.theme-switcher {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary);
     color: white;
-    font-size: 1.5rem;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
-    padding: 0.5rem;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.theme-switcher:hover {
+    transform: scale(1.1);
+}
+
+/* Тёмная тема */
+[data-theme="dark"] {
+    --primary: #ff4444;
+    --dark: #f8f9fa;
+    --light: #1a1a1a;
+    --gray: #a0a0a0;
+}
+
+[data-theme="dark"] body {
+    background: #121212;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] section {
+    background: #2d2d2d;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    border-left-color: #ff4444;
+}
+
+[data-theme="dark"] .hero-card {
+    background: #3d3d3d;
+    border-color: #555;
+}
+
+[data-theme="dark"] .hero-card h3 {
+    color: #ff4444;
+}
+
+[data-theme="dark"] .quote-card {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+    border-left-color: #ff4444;
+}
+
+[data-theme="dark"] .quote-card p {
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .feature {
+    background: #3d3d3d;
+    border-color: #555;
+}
+
+[data-theme="dark"] .feature span {
+    color: #a0a0a0;
+}
+
+[data-theme="dark"] #searchInput {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .search-results {
+    background: #2d2d2d;
+    border-color: #555;
+}
+
+[data-theme="dark"] .search-result-item {
+    border-bottom-color: #444;
+}
+
+[data-theme="dark"] .search-result-item:hover {
+    background: #3d3d3d;
+}
+
+[data-theme="dark"] .search-highlight {
+    background: #ff4444;
+    color: white;
+}
+
+/* Анимация подсветки */
+@keyframes highlight {
+    0% { background-color: rgba(139, 0, 0, 0.3); }
+    100% { background-color: transparent; }
+}
+
+[data-theme="dark"] @keyframes highlight {
+    0% { background-color: rgba(255, 68, 68, 0.3); }
+    100% { background-color: transparent; }
 }
 
 /* Адаптивность для мобильных */
@@ -266,6 +504,10 @@ footer p {
         padding: 0.8rem 1.5rem;
     }
     
+    .search-container {
+        max-width: 300px;
+    }
+    
     main {
         padding: 1.5rem 0;
     }
@@ -281,6 +523,10 @@ footer p {
         gap: 1rem;
     }
     
+    .book-features {
+        grid-template-columns: 1fr;
+    }
+    
     .hero-card,
     .quote-card {
         padding: 1.2rem;
@@ -294,6 +540,13 @@ footer p {
     .button {
         width: 100%;
         padding: 1rem 2rem;
+    }
+    
+    .theme-switcher {
+        bottom: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
     }
 }
 
@@ -322,6 +575,15 @@ footer p {
     
     .hero-card h3 {
         font-size: 1.1rem;
+    }
+    
+    .quote-card p {
+        padding-left: 1.5rem;
+    }
+    
+    .quote-icon {
+        font-size: 1.5rem;
+        left: 10px;
     }
 }
 
@@ -362,4 +624,14 @@ footer p {
     .quote-card {
         border-width: 0.5px;
     }
+}
+
+/* Анимации */
+.fade-in {
+    animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
