@@ -10,7 +10,12 @@
 <body>
     <header id="mainHeader">
         <div class="container">
-            <h1>Феномен верности</h1>
+            <div class="header-top">
+                <h1>Феномен верности</h1>
+                <button class="theme-switcher-header" onclick="toggleTheme()" aria-label="Переключить тему">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
             <p>Ценностный выбор защитников Донбасса (2014-2022)</p>
             
             <!-- Поиск по сайту -->
@@ -131,11 +136,6 @@
         </div>
     </footer>
 
-    <!-- Переключатель темы -->
-    <button class="theme-switcher" onclick="toggleTheme()" aria-label="Переключить тему">
-        🌙
-    </button>
-
     <script>
         // Плавная прокрутка для навигации
         document.querySelectorAll('nav a').forEach(anchor => {
@@ -176,7 +176,7 @@
             observer.observe(card);
         });
 
-        // ТЁМНАЯ ТЕМА - ИСПРАВЛЕННАЯ ВЕРСИЯ
+        // ТЁМНАЯ ТЕМА - КРАСИВАЯ ВЕРСИЯ
         function toggleTheme() {
             const html = document.documentElement;
             const currentTheme = html.getAttribute('data-theme');
@@ -187,26 +187,13 @@
             localStorage.setItem('theme', newTheme);
             
             // Обновляем иконку
-            const themeBtn = document.querySelector('.theme-switcher');
-            themeBtn.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-            
-            // Принудительно обновляем цвета
-            updateThemeColors(newTheme);
+            updateThemeIcon(newTheme);
         }
 
-        function updateThemeColors(theme) {
-            const root = document.documentElement;
-            
-            if (theme === 'dark') {
-                root.style.setProperty('--primary', '#ff4444');
-                root.style.setProperty('--dark', '#f8f9fa');
-                root.style.setProperty('--light', '#1a1a1a');
-                root.style.setProperty('--gray', '#a0a0a0');
-            } else {
-                root.style.setProperty('--primary', '#8B0000');
-                root.style.setProperty('--dark', '#1a1a1a');
-                root.style.setProperty('--light', '#f8f9fa');
-                root.style.setProperty('--gray', '#6c757d');
+        function updateThemeIcon(theme) {
+            const themeIcon = document.querySelector('.theme-icon');
+            if (themeIcon) {
+                themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
             }
         }
 
@@ -216,13 +203,7 @@
                               (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             
             document.documentElement.setAttribute('data-theme', savedTheme);
-            updateThemeColors(savedTheme);
-
-            // Устанавливаем правильную иконку
-            const themeBtn = document.querySelector('.theme-switcher');
-            if (themeBtn) {
-                themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
-            }
+            updateThemeIcon(savedTheme);
         }
 
         // ЗАГОЛОВОК, КОТОРЫЙ ПРЯЧЕТСЯ ПРИ СКРОЛЛЕ
@@ -235,11 +216,9 @@
             if (currentScrollY > lastScrollY && currentScrollY > 100) {
                 // Прокрутка вниз - прячем заголовок
                 header.style.transform = 'translateY(-100%)';
-                header.style.opacity = '0';
             } else {
                 // Прокрутка вверх - показываем заголовок
                 header.style.transform = 'translateY(0)';
-                header.style.opacity = '1';
             }
             
             lastScrollY = currentScrollY;
@@ -379,11 +358,6 @@
         style.textContent = `
             @keyframes highlight {
                 0% { background-color: rgba(139, 0, 0, 0.3); }
-                100% { background-color: transparent; }
-            }
-            
-            [data-theme="dark"] @keyframes highlight {
-                0% { background-color: rgba(255, 68, 68, 0.3); }
                 100% { background-color: transparent; }
             }
         `;
