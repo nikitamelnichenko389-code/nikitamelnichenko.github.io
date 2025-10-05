@@ -15,6 +15,13 @@
                 <button class="theme-switcher-header" onclick="toggleTheme()" aria-label="Переключить тему">
                     <span class="theme-icon">🌙</span>
                 </button>
+                
+                <!-- Бургер-меню -->
+                <button class="burger-menu" onclick="toggleMenu()" aria-label="Открыть меню">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
             <p>Ценностный выбор защитников Донбасса (2014-2022)</p>
             
@@ -24,7 +31,7 @@
                 <div id="searchResults" class="search-results"></div>
             </div>
 
-            <nav>
+            <nav id="mainNav">
                 <a href="#about">О проекте</a>
                 <a href="#heroes">Герои</a>
                 <a href="#quotes">Цитаты</a>
@@ -245,6 +252,11 @@
                         block: 'start'
                     });
                 }
+                
+                // Закрываем меню на мобильных после клика
+                if (window.innerWidth <= 768) {
+                    closeMenu();
+                }
             });
         });
 
@@ -318,6 +330,39 @@
             
             lastScrollY = currentScrollY;
         }
+
+        // БУРГЕР-МЕНЮ
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            const burger = document.querySelector('.burger-menu');
+            
+            nav.classList.toggle('nav-active');
+            burger.classList.toggle('burger-active');
+            
+            // Блокируем прокрутку тела при открытом меню
+            document.body.style.overflow = nav.classList.contains('nav-active') ? 'hidden' : 'auto';
+        }
+
+        function closeMenu() {
+            const nav = document.getElementById('mainNav');
+            const burger = document.querySelector('.burger-menu');
+            
+            nav.classList.remove('nav-active');
+            burger.classList.remove('burger-active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Закрытие меню при клике вне его
+        document.addEventListener('click', function(e) {
+            const nav = document.getElementById('mainNav');
+            const burger = document.querySelector('.burger-menu');
+            
+            if (nav.classList.contains('nav-active') && 
+                !nav.contains(e.target) && 
+                !burger.contains(e.target)) {
+                closeMenu();
+            }
+        });
 
         // МОДАЛЬНОЕ ОКНО ДЛЯ ГЛАВ
         const modal = document.getElementById('chapterModal');
