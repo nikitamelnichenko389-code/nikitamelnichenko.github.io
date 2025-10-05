@@ -47,7 +47,7 @@ body {
     width: 100%;
 }
 
-/* Шапка */
+/* Шапка - ИСПРАВЛЕННАЯ ДЛЯ СКРЫТИЯ ПРИ СКРОЛЛЕ */
 header {
     background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
     color: white;
@@ -65,7 +65,7 @@ header {
 }
 
 body {
-    padding-top: 160px;
+    padding-top: 160px; /* Компенсируем высоту header */
 }
 
 .header-top {
@@ -84,7 +84,7 @@ header h1 {
     word-wrap: break-word;
 }
 
-/* Переключатель темы */
+/* Переключатель темы в шапке */
 .theme-switcher-header {
     background: rgba(255, 255, 255, 0.2);
     border: 2px solid rgba(255, 255, 255, 0.3);
@@ -104,44 +104,6 @@ header h1 {
     background: rgba(255, 255, 255, 0.3);
     transform: scale(1.1);
     border-color: rgba(255, 255, 255, 0.5);
-}
-
-/* Бургер-меню */
-.burger-menu {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    position: absolute;
-    top: 20px;
-    right: 15px;
-    z-index: 1001;
-}
-
-.burger-menu span {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background: white;
-    border-radius: 3px;
-    transition: all 0.3s ease;
-}
-
-.burger-menu.burger-active span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-}
-
-.burger-menu.burger-active span:nth-child(2) {
-    opacity: 0;
-}
-
-.burger-menu.burger-active span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
 }
 
 header p {
@@ -463,7 +425,35 @@ h2 {
     box-shadow: 0 6px 20px rgba(139, 0, 0, 0.3);
 }
 
-/* Главы книги */
+/* Контакты */
+.contact-info {
+    margin-top: 1.5rem;
+}
+
+.contact-info p {
+    margin-bottom: 0.8rem;
+    padding: 0.8rem;
+    background: var(--light-dark);
+    border-radius: 8px;
+    border-left: 3px solid var(--primary);
+}
+
+/* Футер */
+footer {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 2.5rem 0;
+    margin-top: auto;
+}
+
+footer p {
+    opacity: 0.8;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Стили для глав книги */
 .chapters-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -515,34 +505,6 @@ h2 {
     font-size: 0.9rem;
     line-height: 1.4;
     margin: 0;
-}
-
-/* Контакты */
-.contact-info {
-    margin-top: 1.5rem;
-}
-
-.contact-info p {
-    margin-bottom: 0.8rem;
-    padding: 0.8rem;
-    background: var(--light-dark);
-    border-radius: 8px;
-    border-left: 3px solid var(--primary);
-}
-
-/* Футер */
-footer {
-    background: var(--dark);
-    color: white;
-    text-align: center;
-    padding: 2.5rem 0;
-    margin-top: auto;
-}
-
-footer p {
-    opacity: 0.8;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
 }
 
 /* Модальное окно */
@@ -623,7 +585,7 @@ footer p {
     font-weight: 600;
 }
 
-/* ТЁМНАЯ ТЕМА */
+/* ТЁМНАЯ ТЕМА - ТЁМНЫЙ ЗАГОЛОВОК */
 [data-theme="dark"] {
     --primary: #ff6b6b;
     --primary-light: #ff8e8e;
@@ -663,10 +625,6 @@ footer p {
 [data-theme="dark"] .theme-switcher-header:hover {
     background: rgba(255, 107, 107, 0.25);
     border-color: var(--primary);
-}
-
-[data-theme="dark"] .burger-menu span {
-    background: var(--text);
 }
 
 [data-theme="dark"] nav a {
@@ -857,52 +815,26 @@ footer p {
     .header-top {
         flex-direction: column;
         gap: 0.5rem;
-        padding-right: 60px;
     }
     
     .theme-switcher-header {
-        position: static;
-        margin-left: auto;
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
     }
     
-    .burger-menu {
-        display: flex;
-    }
-
     nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 300px;
-        height: 100vh;
-        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
         flex-direction: column;
-        justify-content: flex-start;
+        gap: 0.5rem;
         align-items: center;
-        padding-top: 80px;
-        transition: right 0.3s ease;
-        z-index: 1000;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
     }
-
-    nav.nav-active {
-        right: 0;
-    }
-
+    
     nav a {
-        width: 80%;
-        margin: 0.5rem 0;
-        padding: 1rem 1.5rem;
+        width: 100%;
+        max-width: 250px;
         text-align: center;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        font-size: 1.1rem;
-    }
-
-    nav a:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateX(5px);
     }
     
     .search-container {
@@ -1018,6 +950,15 @@ footer p {
         height: 40px;
         font-size: 1rem;
     }
+    
+    .quote-card p {
+        padding-left: 1.5rem;
+    }
+    
+    .quote-icon {
+        font-size: 1.5rem;
+        left: 10px;
+    }
 }
 
 /* Портретная ориентация */
@@ -1037,11 +978,27 @@ footer p {
 
 /* Поддержка касаний */
 @media (hover: none) {
-    .hero-card:hover,
-    .button:hover,
-    nav a:hover,
-    .chapter-card:hover,
-    .quote-card:hover,
+    .hero-card:hover {
+        transform: none;
+    }
+    
+    .button:hover {
+        transform: none;
+    }
+    
+    nav a:hover {
+        background: transparent;
+        border-color: transparent;
+    }
+    
+    .chapter-card:hover {
+        transform: none;
+    }
+    
+    .quote-card:hover {
+        transform: none;
+    }
+    
     .feature:hover {
         transform: none;
     }
@@ -1065,7 +1022,7 @@ footer p {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Плавные переходы */
+/* Плавные переходы для всех интерактивных элементов */
 .hero-card,
 .quote-card,
 .chapter-card,
@@ -1075,7 +1032,7 @@ nav a {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Улучшенная читаемость */
+/* Улучшенная читаемость текста */
 .chapter-text {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -1090,7 +1047,22 @@ nav a:focus,
     outline-offset: 2px;
 }
 
-/* Тёмная тема для мобильного меню */
-[data-theme="dark"] nav {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+/* Плавная прокрутка для всех браузеров */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    
+    .hero-card,
+    .quote-card,
+    .chapter-card,
+    .feature,
+    .button,
+    nav a {
+        transition: none;
+    }
 }
