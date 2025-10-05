@@ -500,5 +500,14 @@
                 .catch(error => console.log('SW registration failed:', error));
         }
     </script>
+    <!-- Сначала подключаем простые скрипты -->
+<script src="assets/js/utils.js"></script>
+
+<!-- Потом основные -->
+<script src="assets/js/main.js"></script>
+
+<!-- Если есть дополнительные -->
+<script src="assets/js/modules/search.js"></script>
+<script src="assets/js/modules/theme.js"></script>
 </body>
 </html>
